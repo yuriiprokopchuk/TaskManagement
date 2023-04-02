@@ -21,6 +21,11 @@ builder.Services.AddControllers()
             {
                 options.JsonSerializerOptions.Converters.Add(new StatusConverter());
             });
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.IgnoreNullValues = true;
+    });
 
 builder.Services.AddSingleton<IRabbitConnection, RabbitConnection>();
 builder.Services.AddSingleton<ServiceBusHandler>();
