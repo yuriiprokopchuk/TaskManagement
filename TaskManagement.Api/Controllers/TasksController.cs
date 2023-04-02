@@ -4,7 +4,6 @@ using TaskManagement.Services;
 using TaskManagement.Services.Commands;
 using TaskManagement.Services.Queries;
 
-
 namespace TaskManagement.Api.Controllers
 {
     [Route("api/tasks")]
@@ -14,10 +13,24 @@ namespace TaskManagement.Api.Controllers
         private readonly TaskManagementQyeryService _taskManagementQyeryService;
         private readonly ServiceBusHandler _serviceBusHandler;
 
-        public TasksController(ServiceBusHandler serviceBusHandler, TaskManagementQyeryService taskManagementQyeryService)
+        public TasksController(
+            ServiceBusHandler serviceBusHandler,
+            TaskManagementQyeryService taskManagementQyeryService)
         {
             _serviceBusHandler = serviceBusHandler;
             _taskManagementQyeryService = taskManagementQyeryService;
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var task = (await _taskManagementQyeryService.GetTasksAsync(new TasksQuery() { Ids = new int[] { id } }))
+                .FirstOrDefault();
+
+            if (task == null) return NotFound();
+
+            return Ok(task);
         }
 
         [HttpGet]
@@ -49,7 +62,7 @@ namespace TaskManagement.Api.Controllers
                 .GetTasksAsync(new TasksQuery() { Ids = new int[] { updateTask.TaskId } }))
                 .FirstOrDefault();
 
-            if (task != null) return NotFound();
+            if (task == null) return NotFound();
 
             _serviceBusHandler.SendMessage(updateTask);
 

@@ -17,6 +17,8 @@ namespace TaskManagement.Services.DataContext.Entities
         public Status Status { get; set; }
 
         public string AssignedTo { get; set; }
+
+        public string UpdatedBy { get; set; }
     }
 
     public enum Status

@@ -11,7 +11,7 @@ using TaskManagement.Services.DataContext;
 namespace TaskManagement.Services.Migrations
 {
     [DbContext(typeof(TaskDbContext))]
-    [Migration("20230402114256_Initial")]
+    [Migration("20230402212253_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -33,7 +33,6 @@ namespace TaskManagement.Services.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TaskId"));
 
                     b.Property<string>("AssignedTo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
@@ -45,6 +44,9 @@ namespace TaskManagement.Services.Migrations
 
                     b.Property<string>("TaskName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TaskId");

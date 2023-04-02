@@ -21,7 +21,7 @@ namespace TaskManagement.Services.Tests
         }
 
         [TestMethod]
-        public  void CreateTaskTest()
+        public void CreateTaskTest()
         {
             var taskName = "taskNameTest";
             var description = "descriptionTest";
@@ -50,6 +50,7 @@ namespace TaskManagement.Services.Tests
             task.Description.Should().Be(description);
             task.Status.Should().Be(status);
             task.AssignedTo.Should().Be(assignedTo);
+            task.UpdatedBy.Should().BeNull();
         }
 
         [TestMethod]
@@ -78,13 +79,13 @@ namespace TaskManagement.Services.Tests
             var task = tasks.First();
 
             var statusUpdated = Status.InProgress;
-            var assignedToUpdated = "AssignedToUpdated@mail.test";
+            var updatedBy = "updatedBy@mail.test";
 
             UpdateTask updateTask = new UpdateTask()
             {
                 TaskId = task.TaskId,
                 Status = statusUpdated,
-                AssignedTo = assignedToUpdated
+                UpdatedBy = updatedBy
             };
 
             CreateTaskManagementHandlerService().Handle(updateTask);
@@ -100,7 +101,8 @@ namespace TaskManagement.Services.Tests
             taskUpdated.TaskName.Should().Be(taskName);
             taskUpdated.Description.Should().Be(description);
             taskUpdated.Status.Should().Be(statusUpdated);
-            taskUpdated.AssignedTo.Should().Be(assignedToUpdated);
+            taskUpdated.AssignedTo.Should().Be(assignedTo);
+            taskUpdated.UpdatedBy.Should().Be(updatedBy);
         }
 
         [TestMethod, ExpectedException(typeof(NotFoundException))]
@@ -108,7 +110,7 @@ namespace TaskManagement.Services.Tests
         {
             UpdateTask updateTask = new UpdateTask()
             {
-                TaskId = 4, // task with this id does not exist in DB
+                TaskId = 4, // task with this id does not exist in DB, must be an exception
                 Status = Status.InProgress
             };
 

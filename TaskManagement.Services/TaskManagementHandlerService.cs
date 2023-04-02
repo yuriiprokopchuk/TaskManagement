@@ -38,7 +38,7 @@ namespace TaskManagement.Services
             if (task == null) throw new NotFoundException("Task not found");
 
             task.Status = command.Status;
-            task.AssignedTo = command.AssignedTo;
+            task.UpdatedBy = command.UpdatedBy;
 
             _context.SaveChanges();
         }

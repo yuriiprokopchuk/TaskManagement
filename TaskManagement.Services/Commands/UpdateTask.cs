@@ -10,6 +10,7 @@ namespace TaskManagement.Services.Commands
         [Required]
         public Status Status { get; set; }
 
-        public string? AssignedTo { get; set; }
+        [Required]
+        public string UpdatedBy { get; set; }
     }
 }
