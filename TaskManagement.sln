@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Api", "TaskManagement.Api\TaskManagement.Api.csproj", "{96D3E7D8-0978-4700-B9CF-8A95859FAD34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Api", "TaskManagement.Api\TaskManagement.Api.csproj", "{96D3E7D8-0978-4700-B9CF-8A95859FAD34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Bus.Infrastructure", "TaskManagement.Bus\TaskManagement.Bus.Infrastructure.csproj", "{7DC7A611-A4C0-4110-9522-7706392130E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Bus.Infrastructure", "TaskManagement.Bus\TaskManagement.Bus.Infrastructure.csproj", "{7DC7A611-A4C0-4110-9522-7706392130E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Services", "TaskManagement.Services\TaskManagement.Services.csproj", "{EFF56875-BA31-4CD6-AEC4-8F720F61735F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Services", "TaskManagement.Services\TaskManagement.Services.csproj", "{EFF56875-BA31-4CD6-AEC4-8F720F61735F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Services.Tests", "TaskManagement.Services.Tests\TaskManagement.Services.Tests.csproj", "{2390DD56-89C5-477A-9692-F469CD13CA02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Services.Tests", "TaskManagement.Services.Tests\TaskManagement.Services.Tests.csproj", "{2390DD56-89C5-477A-9692-F469CD13CA02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
