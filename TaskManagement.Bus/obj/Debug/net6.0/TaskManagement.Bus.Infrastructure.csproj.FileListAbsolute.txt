@@ -22,3 +22,4 @@ D:\TaskManagement\TaskManagement.Bus\obj\Debug\net6.0\TaskManagement.Bus.Infrast
 D:\TaskManagement\TaskManagement.Bus\obj\Debug\net6.0\refint\TaskManagement.Bus.Infrastructure.dll
 D:\TaskManagement\TaskManagement.Bus\obj\Debug\net6.0\TaskManagement.Bus.Infrastructure.pdb
 D:\TaskManagement\TaskManagement.Bus\obj\Debug\net6.0\ref\TaskManagement.Bus.Infrastructure.dll
+D:\TaskManagement\TaskManagement.Bus\obj\Debug\net6.0\TaskManagement.Bus.Infrastructure.sourcelink.json

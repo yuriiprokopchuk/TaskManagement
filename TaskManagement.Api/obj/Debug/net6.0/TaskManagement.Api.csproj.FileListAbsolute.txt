@@ -190,3 +190,4 @@ D:\TaskManagement\TaskManagement.Api\obj\Debug\net6.0\refint\TaskManagement.Api.
 D:\TaskManagement\TaskManagement.Api\obj\Debug\net6.0\TaskManagement.Api.pdb
 D:\TaskManagement\TaskManagement.Api\obj\Debug\net6.0\TaskManagement.Api.genruntimeconfig.cache
 D:\TaskManagement\TaskManagement.Api\obj\Debug\net6.0\ref\TaskManagement.Api.dll
+D:\TaskManagement\TaskManagement.Api\obj\Debug\net6.0\TaskManagement.Api.sourcelink.json

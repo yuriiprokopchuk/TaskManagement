@@ -32,3 +32,4 @@ D:\TaskManagement\TaskManagement.Services\obj\Debug\net6.0\refint\TaskManagement
 D:\TaskManagement\TaskManagement.Services\obj\Debug\net6.0\TaskManagement.Services.pdb
 D:\TaskManagement\TaskManagement.Services\obj\Debug\net6.0\TaskManagement.Services.genruntimeconfig.cache
 D:\TaskManagement\TaskManagement.Services\obj\Debug\net6.0\ref\TaskManagement.Services.dll
+D:\TaskManagement\TaskManagement.Services\obj\Debug\net6.0\TaskManagement.Services.sourcelink.json

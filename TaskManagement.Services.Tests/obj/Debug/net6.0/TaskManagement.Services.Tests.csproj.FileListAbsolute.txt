@@ -310,3 +310,4 @@ D:\TaskManagement\TaskManagement.Services.Tests\obj\Debug\net6.0\refint\TaskMana
 D:\TaskManagement\TaskManagement.Services.Tests\obj\Debug\net6.0\TaskManagement.Services.Tests.pdb
 D:\TaskManagement\TaskManagement.Services.Tests\obj\Debug\net6.0\TaskManagement.Services.Tests.genruntimeconfig.cache
 D:\TaskManagement\TaskManagement.Services.Tests\obj\Debug\net6.0\ref\TaskManagement.Services.Tests.dll
+D:\TaskManagement\TaskManagement.Services.Tests\obj\Debug\net6.0\TaskManagement.Services.Tests.sourcelink.json
