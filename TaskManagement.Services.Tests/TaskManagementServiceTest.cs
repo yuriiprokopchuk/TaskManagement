@@ -5,23 +5,30 @@ using TaskManagement.Services.DataContext;
 using TaskManagement.Services.DataContext.Entities;
 using TaskManagement.Services.Exceptions;
 using TaskManagement.Services.Queries;
+using Task = System.Threading.Tasks.Task;
 
 namespace TaskManagement.Services.Tests
 {
     [TestClass]
-    public class TaskManagementServiceTest
+    public class TaskManagementServiceTest : IDisposable
     {
+        private readonly TaskManagementHandlerService _taskManagementHandlerService;
+        private readonly TaskManagementQyeryService _taskManagementQyeryService;
+        private readonly TaskDbContext _taskDbContext;
+
         public TaskManagementServiceTest()
         {
-            using (var db = CreateNewTaskDbContext())
-            {
-                db.Database.EnsureDeleted();
-                db.Database.EnsureCreated();
-            }
+
+            _taskDbContext = new TaskDbContext(new DbContextOptionsBuilder<TaskDbContext>().UseInMemoryDatabase("TaskManagement.Test").Options);
+            _taskManagementHandlerService = new TaskManagementHandlerService(_taskDbContext);
+            _taskManagementQyeryService = new TaskManagementQyeryService(_taskDbContext);
+
+            _taskDbContext.Database.EnsureDeleted();
+            _taskDbContext.Database.EnsureCreated();
         }
 
         [TestMethod]
-        public void CreateTaskTest()
+        public async Task CreateTaskTest()
         {
             var taskName = "taskNameTest";
             var description = "descriptionTest";
@@ -36,11 +43,9 @@ namespace TaskManagement.Services.Tests
                 AssignedTo = assignedTo
             };
 
-            CreateTaskManagementHandlerService().Handle(createTask);
+            _taskManagementHandlerService.Handle(createTask);
 
-            var tasks = CreateTaskManagementQueryService()
-                .GetTasksAsync(new TasksQuery())
-                .GetAwaiter().GetResult();
+            var tasks = await _taskManagementQyeryService.GetTasksAsync(new TasksQuery());
 
             tasks.Should().HaveCount(1);
 
@@ -54,7 +59,7 @@ namespace TaskManagement.Services.Tests
         }
 
         [TestMethod]
-        public void UpdateTaskTest()
+        public async Task UpdateTaskTest()
         {
             var taskName = "taskNameTest";
             var description = "descriptionTest";
@@ -69,10 +74,9 @@ namespace TaskManagement.Services.Tests
                 AssignedTo = assignedTo
             };
 
-            CreateTaskManagementHandlerService().Handle(createTask);
+            _taskManagementHandlerService.Handle(createTask);
 
-            var tasks = CreateTaskManagementQueryService()
-                .GetTasksAsync(new TasksQuery()).GetAwaiter().GetResult();
+            var tasks = await _taskManagementQyeryService.GetTasksAsync(new TasksQuery());
 
             tasks.Should().HaveCount(1);
 
@@ -88,15 +92,15 @@ namespace TaskManagement.Services.Tests
                 UpdatedBy = updatedBy
             };
 
-            CreateTaskManagementHandlerService().Handle(updateTask);
+            _taskManagementHandlerService.Handle(updateTask);
 
-            var taskUpdated = CreateTaskManagementQueryService().GetTasksAsync(new TasksQuery()
+            var taskUpdated = (await _taskManagementQyeryService.GetTasksAsync(new TasksQuery()
             {
                 Ids = new int[]
                 {
                     task.TaskId
                 }
-            }).GetAwaiter().GetResult().First();
+            })).First();
 
             taskUpdated.TaskName.Should().Be(taskName);
             taskUpdated.Description.Should().Be(description);
@@ -114,22 +118,12 @@ namespace TaskManagement.Services.Tests
                 Status = Status.InProgress
             };
 
-            CreateTaskManagementHandlerService().Handle(updateTask);
+            _taskManagementHandlerService.Handle(updateTask);
         }
 
-        private TaskDbContext CreateNewTaskDbContext()
+        public void Dispose()
         {
-            return new TaskDbContext(new DbContextOptionsBuilder<TaskDbContext>().UseInMemoryDatabase("TaskManagement.Test").Options);
-        }
-
-        private TaskManagementHandlerService CreateTaskManagementHandlerService()
-        {
-            return new TaskManagementHandlerService(CreateNewTaskDbContext());
-        }
-
-        private TaskManagementQyeryService CreateTaskManagementQueryService()
-        {
-            return new TaskManagementQyeryService(CreateNewTaskDbContext());
+            _taskDbContext?.Dispose();
         }
     }
 }
